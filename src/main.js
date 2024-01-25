@@ -1,9 +1,12 @@
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import App from './App.vue'
+import vuetify from './plugins/vuetify'
+import { createPinia } from 'pinia'
+import { loadFonts } from './plugins/webfontloader'
 
-import components from "./components/UI";
-const app = createApp(App);
-components.forEach((component) => {
-  app.component(component.name, component);
-});
-app.mount("#app");
+loadFonts()
+
+createApp(App)
+  .use(vuetify)
+  .use(createPinia()) 
+  .mount('#app')

@@ -1,25 +1,25 @@
 <template>
     <div>
         <div class="group-of-check">
-                <form>
-                    <select class="sel">
+                <v-form>
+                    <v-select class="sel" :items="items">
                         <option value="">Группа чеков 1</option>
                         <option value="1">Чек 1</option>
                         <option value="2">Чек 2</option>
                         <option value="3">Чек 3</option>
-                    </select>
+                    </v-select>
                     <div class="btns-side">
-                        <button-side>Добавить</button-side>
-                        <button-side>Итог</button-side>
+                        <v-btn>Добавить</v-btn>
+                        <v-btn>Итог</v-btn>
                     </div>
-                </form>
+                </v-form>
             </div>
     </div>
 </template>
 
 <script>
     export default {
-        
+        items:["1", '2','3','4']
     }
 </script>
 

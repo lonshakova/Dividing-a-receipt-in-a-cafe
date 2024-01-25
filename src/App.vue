@@ -1,36 +1,27 @@
 <template>
-  <div class="app">
-    <side-menu></side-menu>
-    <div class="right">
-    <header-menu></header-menu>
-    <card-list></card-list>
-  </div>
-  </div>
+  <v-app>
+    <v-main>
+      <header-menu> </header-menu>
+</v-main>
+  </v-app>
 </template>
 
 <script>
-import SideMenu from "@/components/SideMenu.vue";
-import HeaderMenu from "@/components/HeaderMenu.vue";
-import CardList from "@/components/CardList.vue"
-export default{
-  components:{
-    SideMenu,
-    HeaderMenu,
-    CardList
-  }
+import SideMenu from './components/SideMenu.vue';
+import HeaderMenu from './components/HeaderMenu.vue';
+import NewProduct from './components/DialogWindows/NewProduct.vue';
+
+export default {
+  name: 'App',
+
+  components: {
+SideMenu,
+HeaderMenu,
+NewProduct
+
+  },
+
+  data: () => ({
+    }),
 }
 </script>
-
-<style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.app {
-  display: flex;
-  justify-content: space-between;
-}
-
-</style>
