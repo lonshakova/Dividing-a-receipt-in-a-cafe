@@ -6,18 +6,20 @@
     <v-list>
       <v-list-item v-for="person in persons" :key="person.id">
         <v-list-item v-for="creditor in person.creditors" :key="person.id">
-          <div>
+          <div class="persons">
             {{ person.name }} должен {{ creditor.nameCred }} {{ creditor.credit }}
           </div>
           </v-list-item>
       </v-list-item>
     </v-list>
-    <v-btn @click="removeRepetitions">Убрать повторения</v-btn>
+    <v-btn @click="removeRepetitions" class="btn">Убрать повторения</v-btn>
   </div>
 </template>
   
 <script>
+
 export default {
+  
   data() {
     return {
 
@@ -48,35 +50,32 @@ export default {
 };
 </script>
   
-<style scoped>
+<style scoped lang="scss">
 .total-amount {
   margin: 10px;
-  font-family: "Inter", sans-serif;
   text-align: center;
 }
 
 .amount {
   text-align: center;
-  font-family: Arial;
   font-size: 40px;
-  font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
 .persons {
-  margin-top: 12px;
-  width: 500px;
+  min-width: 250px;
   height: 50px;
-  background: #ffffff;
+  background: #eafaf1;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial;
   font-size: 24px;
-  font-weight: 400;
   border: 1px solid black;
   border-radius: 15px;
 }
+.btn:hover{
+    background:#eafaf1;
+  }
 </style>
   

@@ -5,14 +5,14 @@
                 <v-row justify="space-around" class="header-menu">
                     <v-dialog v-model="NewProductVisible" width="auto" scrollable>
                         <template v-slot:activator="{ props }">
-                            <v-btn style="width: 300px" v-bind="props">Добавить продукт</v-btn>
+                            <v-btn style="width: 300px" v-bind="props" class="btn">Добавить продукт</v-btn>
                         </template>
                         <v-card>
                             <new-product @create="createCard" :persons="persons"></new-product></v-card>
                     </v-dialog>
                     <v-dialog v-model="NewPersonVisible" width="auto" height="500px" scrollable>
                         <template v-slot:activator="{ props }">
-                            <v-btn style="width: 300px" v-bind="props">Добавить человека</v-btn>
+                            <v-btn style="width: 300px" v-bind="props" class="btn">Добавить человека</v-btn>
                         </template>
                         <v-card>
                             <v-card-text style="height: 300px;">
@@ -23,7 +23,7 @@
                     </v-dialog>
                     <v-dialog v-model="TotalAmountVisible" width="auto" scrollable>
                         <template v-slot:activator="{ props }">
-                            <v-btn style="width: 300px" v-bind="props">Итоговая сумма</v-btn>
+                            <v-btn style="width: 300px" v-bind="props" class="btn">Итоговая сумма</v-btn>
                         </template>
                         <v-card>
                             <total-amount :persons="persons" @removeRepetitions="removeRepetitions"></total-amount></v-card>
@@ -154,3 +154,9 @@ export default {
     },
 };
 </script>
+
+<style scoped lang="scss">
+.btn:hover{
+    background: #eafaf1;
+}
+</style>

@@ -35,7 +35,7 @@
   };
   </script>
   
-  <style scoped>
+  <style scoped lang="scss">
   .card-product {
     margin-top: 30px;
     padding-top: 25px;
@@ -45,13 +45,10 @@
     align-items: center;
     flex-direction: column;
     border-radius: 15px;
-    font-family: Arial;
     font-size: 24px;
-    font-weight: 400;
     text-transform: uppercase;
     border: 1px solid #148f77;
     background: #eafaf1;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
   
   .product {
@@ -64,7 +61,6 @@
     background: #ffffff;
     border: 1px solid #000000;
     border-radius: 15px;
-    color: #000;
   }
   
   .cost-payer {
@@ -73,7 +69,6 @@
     height: 51px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
     flex-direction: row;
   }
   
@@ -86,9 +81,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     color: #fff;
-    font-family: Arial;
     font-size: 24px;
     font-weight: 700;
   }
@@ -99,7 +92,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
     background: #ffffff;
     border: 1px solid #000000;
     border-radius: 0px 15px 15px 0px;
@@ -126,8 +118,12 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    font-family: Arial;
   }
-  
+  .btn{
+    &:hover{
+    background:#1abc9c;
+    color: #ffffff;
+  }
+  }
   </style>
   

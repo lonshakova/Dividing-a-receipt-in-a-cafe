@@ -1,20 +1,19 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <router-view></router-view>
   </v-app>
 </template>
 
 <script>
 
-
 </script>
-<style>
+<style lang=scss>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.app {
+#app {
   padding: 20px;
 }
 </style>

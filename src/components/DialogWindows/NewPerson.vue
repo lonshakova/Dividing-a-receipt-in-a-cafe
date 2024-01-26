@@ -2,7 +2,7 @@
   <v-card class="new-person" @submit.prevent>
     <v-form class="input-person">
       <v-text-field v-model="person.name" placeholder="Введите имя" class="name" style=""></v-text-field>
-      <v-btn style="width: 140px;" class="btn" @click="addPerson"> Добавить </v-btn>
+      <v-btn  class="btn" @click="addPerson"> Добавить </v-btn>
     </v-form>
     <div lines class="name-list" v-for="person in persons" v-bind:persons="persons">
       <v-list-item class="names">{{ person.name }}</v-list-item>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -44,27 +45,26 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .input-person {
-  margin: 20px;
   width: 390px;
   height: 50px;
   display: flex;
   align-items: center;
   flex-direction: row;
 }
-.name {
-  width: 250px;
-  height: 60px;
-}
-.btn {
-  width: 110px;
-  height: 60px;
 
+.btn{
+  height: 100%;
+  &:hover{
+    background:#eafaf1;
+  }
+}
+.name{
+  height: 100%;
 }
 .name-list{
   margin-top: 20px;
-  padding:0;
   display: flex;
 }
 .names {
@@ -76,7 +76,7 @@ export default {
   align-items: center;
   text-align: center;
   background: #ffffff;
-  border: 1px solid #148f77;
+  border: 1px solid #000000;
   border-radius: 15px;
   font-family: Arial;
 }

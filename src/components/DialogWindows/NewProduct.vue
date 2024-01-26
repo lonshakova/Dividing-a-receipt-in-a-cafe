@@ -2,8 +2,8 @@
   <div class="new-product" @submit.prevent>
     <div>
       <v-form class="input-product">
-        <v-text-field v-model="product.name" placeholder="Введите название"></v-text-field>
-        <v-text-field v-model="product.cost" placeholder="Введите цену"></v-text-field>
+        <v-text-field v-model="product.name" class="input" placeholder="Введите название"></v-text-field>
+        <v-text-field v-model="product.cost" class="input" placeholder="Введите цену"></v-text-field>
       </v-form>
     </div>
     <div class="users">
@@ -23,7 +23,7 @@
         <v-list>
       <v-container>
         <v-list-item v-for="person in persons" :value="person">
-        <v-checkbox :label="person.name" :value="person" class="payer" v-model="product.eaters"></v-checkbox>
+        <v-checkbox color="eafaf1" :label="person.name" :value="person" class="payer" v-model="product.eaters"></v-checkbox>
       </v-list-item>
       </v-container>
     </v-list>
@@ -36,6 +36,7 @@
 </template>
   
 <script>
+
 export default {
   data() {
     return {
@@ -71,7 +72,7 @@ export default {
 };
 </script>
   
-<style scoped>
+<style scoped lang="scss">
 .new-product {
   width: 785px;
   font-family: Arial;
@@ -79,18 +80,23 @@ export default {
 
 .input-product {
   margin: 20px 0px;
+  padding: 20px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
-  font-family: Arial;
 }
-
+.input{
+  margin: 0px 10px;
+}
 .btn {
   margin: 20px;
   width: 140px;
   height: 50px;
+  &:hover{
+    background:#eafaf1;
+  }
 }
 
 
@@ -103,10 +109,8 @@ export default {
 }
 
 .question {
-  font-family: Inter;
   font-size: 24px;
   text-align: center;
-  font-family: Arial;
 }
 
 .checkboxs {
@@ -119,13 +123,6 @@ export default {
 .checkbox {
   height: 30px;
   width: 30px;
-  background-color: red;
-}
-
-input:checked+lable {
-  color: #ffffff;
-  background-color: #1abc9c;
-  border-radius: 10px;
 }
 
 .payer {
@@ -137,7 +134,6 @@ input:checked+lable {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial;
   font-size: 24px;
   text-transform: uppercase;
 }
