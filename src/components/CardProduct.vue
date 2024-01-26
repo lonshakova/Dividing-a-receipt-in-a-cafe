@@ -5,19 +5,19 @@
         <div class="cost-payer">
           <div class="cost">{{ product.cost }}</div>
           <div class="payer">
-            <div class="name_person" v-for="payer in product.payer">
-              {{ payer }}&nbsp
+            <div class="name_person" >
+              {{ product.payer.name  }}
             </div>
           </div>
         </div>
         <div class="eaters">
           <div class="name_person" v-for="eater in product.eaters">
-            {{ eater }}
+            {{ eater.name }}&nbsp
           </div>
         </div>
         <div class="btns">
-          <button-main class="btn" @click="$emit('remove', post)"
-            >Удалить</button-main
+          <v-btn class="btn" @click="$emit('remove', post)"
+            >Удалить</v-btn
           >
         </div>
       </div>
@@ -110,12 +110,14 @@
     width: 250px;
     min-height: 125px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     background: #ffffff;
     border: 1px solid #000000;
     border-radius: 15px;
+    font-size: medium;
   }
   
   .btns {
@@ -127,9 +129,5 @@
     font-family: Arial;
   }
   
-  .btn {
-    padding: 15px 10px;
-    font-family: Arial;
-  }
   </style>
   

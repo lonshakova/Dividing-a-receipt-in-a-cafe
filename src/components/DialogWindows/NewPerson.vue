@@ -1,13 +1,13 @@
 <template>
   <v-card class="new-person" @submit.prevent>
     <v-form class="input-person">
-      <v-input v-model="person.name" placeholder="Введите имя" class="name" style="" />
+      <v-text-field v-model="person.name" placeholder="Введите имя" class="name" style=""></v-text-field>
       <v-btn style="width: 140px;" class="btn" @click="addPerson"> Добавить </v-btn>
     </v-form>
-    <div class="name-list" v-for="person in persons" v-bind:persons="persons">
-      <div class="names">{{ person.name }}</div>
+    <div lines class="name-list" v-for="person in persons" v-bind:persons="persons">
+      <v-list-item class="names">{{ person.name }}</v-list-item>
       <div>
-        <v-btn class="btn" @click="$emit('deletePerson', person)">Удалить</v-btn>
+        <v-btn block rounded="lg" class="btn" @click="$emit('deletePerson', person)">Удалить</v-btn>
       </div>
     </div>
   </v-card>
@@ -20,8 +20,7 @@ export default {
       person:{
         name: "", 
         wastes:0,
-        creditor: "" ,
-        credit: 0, 
+        creditors:[]
       },
     };
   },
@@ -38,8 +37,7 @@ export default {
         this.person = {
           name: "", 
         wastes:0,
-        creditor: "" ,
-        credit: 0, 
+        creditors:[]
         };
       },
   }
@@ -48,8 +46,7 @@ export default {
 
 <style scoped>
 .input-person {
-  font-family: Arial;
-  margin-top: 20px;
+  margin: 20px;
   width: 390px;
   height: 50px;
   display: flex;
@@ -58,15 +55,12 @@ export default {
 }
 .name {
   width: 250px;
-  border: 1px solid #148f77;
-  border-radius: 15px 0px 0px 15px;
-  font-family: Arial;
+  height: 60px;
 }
 .btn {
   width: 110px;
-  height: 54px;
-  border-radius: 0px 15px 15px 0px;
-  font-family: Arial;
+  height: 60px;
+
 }
 .name-list{
   margin-top: 20px;

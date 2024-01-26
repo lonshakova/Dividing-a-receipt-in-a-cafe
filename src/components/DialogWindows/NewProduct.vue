@@ -1,33 +1,36 @@
 <template>
   <div class="new-product" @submit.prevent>
     <div>
-      <form class="input-product">
-        <my-input v-model="product.name" placeholder="Введите название" />
-        <my-input v-model="product.cost" placeholder="Введите цену" />
-      </form>
+      <v-form class="input-product">
+        <v-text-field v-model="product.name" placeholder="Введите название"></v-text-field>
+        <v-text-field v-model="product.cost" placeholder="Введите цену"></v-text-field>
+      </v-form>
     </div>
     <div class="users">
       <div>
         <div class="question">Кто платил?</div>
-        <div v-for="person in persons" class="checkboxs">
-          <input type="radio" class="checkbox" v-model="product.payer" id="person.id" :value="person.name" />
-          <lable for="person.id" class="payer">
-            {{ person.name }}
-          </lable>
-        </div>
+        <v-list>
+          <v-radio-group v-model="product.payer">
+            <v-list-item v-for="person in persons" :value="person">
+              <v-radio :label="person.name" :value="person" class="payer"></v-radio>
+            </v-list-item>
+          </v-radio-group>
+        </v-list>
       </div>
+      
       <div>
         <div class="question">Кто ел/пил?</div>
-        <div v-for="person in persons" class="checkboxs">
-          <input type="checkbox" class="checkbox" v-model="product.eaters" :value="person.name" />
-          <lable class="payer" value="name">
-            {{ person.name }}
-          </lable>
-        </div>
+        <v-list>
+      <v-container>
+        <v-list-item v-for="person in persons" :value="person">
+        <v-checkbox :label="person.name" :value="person" class="payer" v-model="product.eaters"></v-checkbox>
+      </v-list-item>
+      </v-container>
+    </v-list>
       </div>
     </div>
     <div style="display: flex; justify-content: flex-end">
-      <button-main class="btn" @click="createCard">Добавить</button-main>
+      <v-btn class="btn" @click="createCard">Добавить</v-btn>
     </div>
   </div>
 </template>
@@ -42,7 +45,6 @@ export default {
         payer: "",
         eaters: [],
       },
-      names: ["Lolo", "2", "3"],
     };
   },
   props: {
@@ -91,9 +93,6 @@ export default {
   height: 50px;
 }
 
-.btn:hover {
-  background: #148f77;
-}
 
 .users {
   display: flex;
@@ -142,7 +141,5 @@ input:checked+lable {
   font-size: 24px;
   text-transform: uppercase;
 }
-
-
 </style>
   

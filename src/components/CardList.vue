@@ -1,12 +1,11 @@
 <template>
     <div>
-        <div class="card-list"  v-if="products.length > 0">
-            <transition-group name="card-list">
-                <card-product  v-for="product in products" v-bind:product="product" :key="product.id"
+        <div class="card-list">
+            <transition-group name="card-list" v-for="product in products">
+                <card-product  v-bind:product="product" :key="product.id"
                     @remove="$emit('remove', product)"></card-product>
             </transition-group>
         </div>
-        <h2 class="empty-list" v-else>Пока продуктов нет. Хотите добавить новый?</h2>
     </div>
 </template>
   
@@ -40,7 +39,7 @@ export default {
 
 .card-list-enter-active,
 .card-list-leave-active {
-    transition: all 0.8s ease;
+    transition: all 0.5s ease;
 }
 
 .card-list-enter-from,
