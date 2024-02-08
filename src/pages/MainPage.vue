@@ -3,34 +3,52 @@
         <v-main>
             <v-container>
                 <v-row justify="space-around" class="header-menu">
-                    <v-dialog v-model="NewProductVisible" width="auto" scrollable>
+                    <v-dialog 
+                    v-model="NewProductVisible" 
+                    width="auto" 
+                    scrollable>
                         <template v-slot:activator="{ props }">
-                            <v-btn style="width: 300px" v-bind="props" class="btn">Добавить продукт</v-btn>
+                            <v-btn v-bind="props" class="btn">Добавить продукт</v-btn>
                         </template>
                         <v-card>
-                            <new-product @create="createCard" :persons="persons"></new-product></v-card>
-                    </v-dialog>
-                    <v-dialog v-model="NewPersonVisible" width="auto" height="500px" scrollable>
-                        <template v-slot:activator="{ props }">
-                            <v-btn style="width: 300px" v-bind="props" class="btn">Добавить человека</v-btn>
-                        </template>
-                        <v-card>
-                            <v-card-text style="height: 300px;">
-                                <new-person @add="addPerson" :persons="persons"
-                                    @deletePerson="deletePerson"></new-person></v-card-text>
-                            <v-divider></v-divider>
+                            <new-product 
+                            @create="createCard" 
+                            :persons="persons" />
                         </v-card>
                     </v-dialog>
-                    <v-dialog v-model="TotalAmountVisible" width="auto" scrollable>
+                    <v-dialog 
+                    v-model="NewPersonVisible" 
+                    width="auto" 
+                    height="500px" 
+                    scrollable>
                         <template v-slot:activator="{ props }">
-                            <v-btn style="width: 300px" v-bind="props" class="btn">Итоговая сумма</v-btn>
+                            <v-btn v-bind="props" class="btn">Добавить человека</v-btn>
                         </template>
                         <v-card>
-                            <total-amount :persons="persons" @removeRepetitions="removeRepetitions"></total-amount></v-card>
+                            <v-card-text>
+                                <new-person 
+                                @add="addPerson" 
+                                :persons="persons"
+                                @deletePerson="deletePerson" />
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>
+                    <v-dialog 
+                    v-model="TotalAmountVisible" 
+                    width="auto" 
+                    scrollable>
+                        <template v-slot:activator="{ props }">
+                            <v-btn v-bind="props" class="btn">Итоговая сумма</v-btn>
+                        </template>
+                        <v-card>
+                            <total-amount 
+                            :persons="persons" 
+                            @removeRepetitions="removeRepetitions" />
+                        </v-card>
                     </v-dialog>
                 </v-row>
             </v-container>
-            <card-list :products="products" @remove="removeCard"></card-list>
+            <card-list :products="products" @remove="removeCard" />
         </v-main>
     </v-app>
 </template>
@@ -56,36 +74,30 @@ export default {
             products: []
         }
     },
-    props: {
-        person: {
-            type: Object,
-            required: true,
-        },
-    },
     methods: {
         createCard(product) {
             this.products.push(product);
             this.NewProductVisible = false;
-            const cost = +product.cost;
-            const price = cost / (product.eaters.length);
+            const productCost = +product.cost;
+            const totalPrice = productCost / (product.eaters.length);
             for (const person of this.persons) {
                 if (person.id == product.payer.id) {
-                    person.wastes = person.wastes + cost;
+                    person.wastes = person.wastes + productCost;
                 }
                 else {
                     for (const eater of product.eaters) {
                         if (person.id == eater.id) {
                             for (const creditor of person.creditors) {
                                 if (creditor.id == product.payer.id) {
-                                    creditor.credit = creditor.credit + price;
+                                    creditor.credit = creditor.credit + totalPrice;
                                     break;
                                 }
                                 else if (creditor.id != product.payer.id) {
-                                    eater.creditors.push({ id: product.payer.id, nameCred: product.payer.name, credit: price });
+                                    eater.creditors.push({ id: product.payer.id, nameCred: product.payer.name, credit: totalPrice });
                                     break;
                                 }
                             }
-                            if (person.creditors.length == 0) { eater.creditors.push({ id: product.payer.id, nameCred: product.payer.name, credit: price }); }
+                            if (person.creditors.length == 0) { eater.creditors.push({ id: product.payer.id, nameCred: product.payer.name, credit: totalPrice }); }
                         }
                     }
                 }
@@ -104,8 +116,8 @@ export default {
                             for (const creditor of person.creditors) {
                                 if (creditor.id == product.payer.id) {
                                     creditor.credit = creditor.credit - price;
-                                    if (creditor.credit==0){
-                                        person.creditors=person.creditors.filter((p) => p.id !== creditor.id);
+                                    if (creditor.credit == 0) {
+                                        person.creditors = person.creditors.filter((p) => p.id !== creditor.id);
                                     }
                                     break;
                                 }
@@ -144,10 +156,6 @@ export default {
                             }
                         }
                     }
-
-
-
-
                 }
             }
         }
@@ -156,7 +164,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.btn:hover{
-    background: #eafaf1;
+.btn {
+    width: 300px;
+    &:hover {
+        background: #eafaf1;
+    }
 }
 </style>

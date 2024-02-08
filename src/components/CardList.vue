@@ -1,9 +1,14 @@
 <template>
     <div>
         <div class="card-list">
-            <transition-group name="card-list" v-for="product in products">
-                <card-product  v-bind:product="product" :key="product.id"
-                    @remove="$emit('remove', product)"></card-product>
+            <transition-group 
+            name="card-list" 
+            v-for="product in products" 
+            :key="product.id">
+                <card-product  
+                :product="product" 
+                :key="product.id" 
+                @remove="$emit('remove', product)" />
             </transition-group>
         </div>
     </div>

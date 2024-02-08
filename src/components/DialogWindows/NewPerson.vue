@@ -1,13 +1,21 @@
 <template>
   <v-card class="new-person" @submit.prevent>
     <v-form class="input-person">
-      <v-text-field v-model="person.name" placeholder="Введите имя" class="name" style=""></v-text-field>
-      <v-btn  class="btn" @click="addPerson"> Добавить </v-btn>
+      <v-text-field 
+      v-model="person.name" 
+      placeholder="Введите имя" 
+      class="name"/>
+      <v-btn class="btn" @click="addPerson"> Добавить </v-btn>
     </v-form>
-    <div lines class="name-list" v-for="person in persons" v-bind:persons="persons">
+    <div lines 
+    class="name-list" 
+    v-for="person in persons" :key="person.id">
       <v-list-item class="names">{{ person.name }}</v-list-item>
       <div>
-        <v-btn block rounded="lg" class="btn" @click="$emit('deletePerson', person)">Удалить</v-btn>
+        <v-btn 
+        block rounded="lg" 
+        class="btn" 
+        @click="$emit('deletePerson', person)">Удалить</v-btn>
       </div>
     </div>
   </v-card>
@@ -18,55 +26,59 @@
 export default {
   data() {
     return {
-      person:{
-        name: "", 
-        wastes:0,
-        creditors:[]
+      person: {
+        name: "",
+        wastes: 0,
+        creditors: []
       },
     };
   },
-  props:{
-    persons:{
-        type: Array,
-        required: true,
-      }
+  props: {
+    persons: {
+      type: Array,
+      required: true,
+    }
   },
-  methods:{
+  methods: {
     addPerson() {
-        this.person.id = Date.now();
-        this.$emit("add", this.person);
-        this.person = {
-          name: "", 
-        wastes:0,
-        creditors:[]
-        };
-      },
+      this.person.id = Date.now();
+      this.$emit("add", this.person);
+      this.person = {
+        name: "",
+        wastes: 0,
+        creditors: []
+      };
+    },
   }
 };
 </script>
 
 <style scoped lang="scss">
 .input-person {
-  width: 390px;
+  margin: 0;
+  width: 401px;
   height: 50px;
   display: flex;
   align-items: center;
   flex-direction: row;
 }
 
-.btn{
+.btn {
   height: 100%;
-  &:hover{
-    background:#eafaf1;
+  &:hover {
+    background: #eafaf1;
   }
 }
-.name{
+
+.name {
   height: 100%;
 }
-.name-list{
+
+.name-list {
   margin-top: 20px;
   display: flex;
 }
+
 .names {
   width: 295px;
   height: 50px;

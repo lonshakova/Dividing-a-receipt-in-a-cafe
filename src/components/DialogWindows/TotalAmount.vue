@@ -1,15 +1,15 @@
 <template>
-  <div class="total-amount" @submit.prevent>
+  <div class="total-amount">
     <div class="amount">
       СУММА: <span style="color: #186a3b">{{ amount }}</span>
     </div>
     <v-list>
       <v-list-item v-for="person in persons" :key="person.id">
-        <v-list-item v-for="creditor in person.creditors" :key="person.id">
+        <v-list-item v-for="creditor in person.creditors" :key="creditor.id">
           <div class="persons">
             {{ person.name }} должен {{ creditor.nameCred }} {{ creditor.credit }}
           </div>
-          </v-list-item>
+        </v-list-item>
       </v-list-item>
     </v-list>
     <v-btn @click="removeRepetitions" class="btn">Убрать повторения</v-btn>
@@ -19,33 +19,27 @@
 <script>
 
 export default {
-  
-  data() {
-    return {
-
-    };
-  },
   props: {
     persons: {
       type: Array,
       required: true,
     }
   },
-  computed:{
-    amount(){
-      var sum=0;
-      for( var person of this.persons){
-        var wastes=+person.wastes;
-        sum=sum+wastes;
+  computed: {
+    amount() {
+      var sum = 0;
+      for (var person of this.persons) {
+        var wastes = +person.wastes;
+        sum = sum + wastes;
       }
-      return  sum;
+      return sum;
     },
   },
-  methods:{
-    removeRepetitions(){
-      this.$emit("removeRepetitions", this.product);
+  methods: {
+    removeRepetitions() {
+      this.$emit("removeRepetitions");
     }
-    
+
   }
 };
 </script>
@@ -74,8 +68,9 @@ export default {
   border: 1px solid black;
   border-radius: 15px;
 }
-.btn:hover{
-    background:#eafaf1;
-  }
+
+.btn:hover {
+  background: #eafaf1;
+}
 </style>
   
