@@ -24,6 +24,7 @@
   
 <script>
 export default {
+  emits:['remove'],
   props: {
     product: {
       type: Object,

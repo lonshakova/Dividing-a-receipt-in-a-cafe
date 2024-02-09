@@ -97,34 +97,32 @@ export default {
                                     break;
                                 }
                             }
-                            if (person.creditors.length == 0) { eater.creditors.push({ id: product.payer.id, nameCred: product.payer.name, credit: totalPrice }); }
+                            if (person.creditors.length == 0) { 
+                                eater.creditors.push({ id: product.payer.id, nameCred: product.payer.name, credit: totalPrice }); 
+                            }
                         }
                     }
                 }
             }
         },
         removeCard(product) {
-            const cost = +product.cost;
-            const price = cost / (product.eaters.length);
+            const productCost = +product.cost;
+            const totalPrice = productCost / (product.eaters.length);
             for (const person of this.persons) {
                 if (person.id == product.payer.id) {
-                    person.wastes = person.wastes - cost;
+                    person.wastes = person.wastes - productCost;
                 }
                 else {
-                    for (const eater of product.eaters) {
-                        if (person.id == eater.id) {
-                            for (const creditor of person.creditors) {
-                                if (creditor.id == product.payer.id) {
-                                    creditor.credit = creditor.credit - price;
-                                    if (creditor.credit == 0) {
-                                        person.creditors = person.creditors.filter((p) => p.id !== creditor.id);
-                                    }
-                                    break;
-                                }
+                    for (const creditor of person.creditors) {
+                        if (creditor.id == product.payer.id) {
+                            creditor.credit = creditor.credit - totalPrice;
+                            if (creditor.credit == 0) {
+                                person.creditors = person.creditors.filter((p) => p.id !== creditor.id);
                             }
+                            break;
                         }
                     }
-                }
+            }
             }
             this.products = this.products.filter((p) => p.id !== product.id);
         },

@@ -5,11 +5,13 @@ import router from './router/router.js'
 import { createPinia } from 'pinia'
 import { loadFonts } from './plugins/webfontloader'
 
+
+
 loadFonts()
-const pinia = createPinia();
+const pinia = createPinia()
 const app = createApp(App)
-app
-  .use(router)
-  .use(vuetify)
-  .use(pinia) 
-  .mount('#app')
+app.use(pinia) 
+app.use(router)
+app.use(vuetify)
+app.mount('#app')
+

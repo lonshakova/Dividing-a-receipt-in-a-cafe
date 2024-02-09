@@ -24,6 +24,7 @@
 <script>
 
 export default {
+  emits:['deletePerson'],
   data() {
     return {
       person: {

@@ -17,6 +17,7 @@
 <script>
 import CardProduct from "./CardProduct.vue";
 export default {
+    emits: ['remove'],
     components: {
         CardProduct,
     },

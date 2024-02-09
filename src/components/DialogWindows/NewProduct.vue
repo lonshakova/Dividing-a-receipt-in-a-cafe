@@ -60,6 +60,7 @@
 <script>
 
 export default {
+  emits:['create'],
   data() {
     return {
       product: {
