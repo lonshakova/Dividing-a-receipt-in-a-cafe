@@ -11,20 +11,32 @@
         </div>
       </div>
       <div class="eaters">
-        <div class="name_person" v-for="eater in product.eaters" :key="eater.id">
+        <div 
+        class="name_person" 
+        v-for="eater in product.eaters" 
+        :key="eater.id">
           {{ eater.name }}&nbsp
         </div>
       </div>
       <div class="btns">
-        <v-btn class="btn" @click="$emit('remove', product)">Удалить</v-btn>
+        <v-btn 
+        class="btn" 
+        @click="productStore.removeCard(product)"
+        >Удалить</v-btn>
       </div>
     </div>
   </div>
 </template>
   
 <script>
+import { useProductsStore } from "@/stores/productStore";
 export default {
-  emits:['remove'],
+  setup() {
+    const productStore = useProductsStore();
+    return {
+      productStore
+    }
+  },
   props: {
     product: {
       type: Object,

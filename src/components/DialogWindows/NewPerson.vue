@@ -4,27 +4,39 @@
       <v-text-field 
       v-model="person.name" 
       placeholder="Введите имя" 
-      class="name"/>
-      <v-btn class="btn" @click="addPerson"> Добавить </v-btn>
+      class="name" />
+      <v-btn 
+      class="btn" 
+      @click="addPerson"
+      > Добавить </v-btn>
     </v-form>
-    <div lines 
-    class="name-list" 
-    v-for="person in persons" :key="person.id">
+    <div 
+    lines 
+    class="name-list"
+    v-for="person in personsStore.persons" 
+    :key="person.id">
       <v-list-item class="names">{{ person.name }}</v-list-item>
       <div>
         <v-btn 
-        block rounded="lg" 
+        block 
+        rounded="lg" 
         class="btn" 
-        @click="$emit('deletePerson', person)">Удалить</v-btn>
+        @click="this.personsStore.deletePerson(person)"
+        >Удалить</v-btn>
       </div>
     </div>
   </v-card>
 </template>
 
 <script>
-
+import { usePersonsStore } from "@/stores/personsStore";
 export default {
-  emits:['deletePerson'],
+  setup() {
+    const personsStore = usePersonsStore();
+    return {
+      personsStore,
+    }
+  },
   data() {
     return {
       person: {
@@ -34,16 +46,10 @@ export default {
       },
     };
   },
-  props: {
-    persons: {
-      type: Array,
-      required: true,
-    }
-  },
   methods: {
     addPerson() {
       this.person.id = Date.now();
-      this.$emit("add", this.person);
+      this.personsStore.addPerson(this.person);
       this.person = {
         name: "",
         wastes: 0,
@@ -66,6 +72,7 @@ export default {
 
 .btn {
   height: 100%;
+
   &:hover {
     background: #eafaf1;
   }

@@ -3,12 +3,11 @@
         <div class="card-list">
             <transition-group 
             name="card-list" 
-            v-for="product in products" 
+            v-for="product in productStore.products" 
             :key="product.id">
-                <card-product  
+                <card-product 
                 :product="product" 
-                :key="product.id" 
-                @remove="$emit('remove', product)" />
+                :key="product.id" />
             </transition-group>
         </div>
     </div>
@@ -16,16 +15,16 @@
   
 <script>
 import CardProduct from "./CardProduct.vue";
+import { useProductsStore } from "@/stores/productStore";
 export default {
-    emits: ['remove'],
+    setup() {
+        const productStore = useProductsStore();
+        return {
+            productStore
+        }
+    },
     components: {
         CardProduct,
-    },
-    props: {
-        products: {
-            type: Array,
-            required: true,
-        },
     },
 };
 </script>
@@ -57,7 +56,8 @@ export default {
 .card-list-move {
     transition: transform 0.8s ease;
 }
-.empty-list{
+
+.empty-list {
     width: 100%;
     display: flex;
     justify-content: center;
