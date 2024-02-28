@@ -5,6 +5,7 @@
     </div>
     <v-list>
       <v-list-item v-for="person in personsStore.persons" :key="person.id">
+        {{ person }}
         <v-list-item v-for="creditor in person.creditors" :key="creditor.id">
           <div class="persons">
             {{ person.name }} должен {{ creditor.nameCred }} {{ creditor.credit }}

@@ -73,7 +73,7 @@ export default {
     return {
       product: {
         name: "",
-        cost: "",
+        cost: 0,
         payer: "",
         eaters: [],
       },
@@ -85,7 +85,7 @@ export default {
       this.productStore.createCard(this.product);
       this.product = {
         name: "",
-        cost: "",
+        cost: 0,
         payer: "",
         eaters: [],
       };

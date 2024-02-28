@@ -5,6 +5,7 @@
             name="card-list" 
             v-for="product in productStore.products" 
             :key="product.id">
+            {{ product }}
                 <card-product :product="product" :key="product.id" />
             </transition-group>
         </div>

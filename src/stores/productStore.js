@@ -8,7 +8,7 @@ export const useProductsStore = defineStore({
     createCard(product) {
       const personsStore = usePersonsStore();
       this.products.push(product);
-      product.cost = +product.cost;
+      
       const totalPrice = product.cost / (product.eaters.length);
       for (const person of personsStore.persons) {
         if (person.id === product.payer.id) {
