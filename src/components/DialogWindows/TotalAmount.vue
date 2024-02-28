@@ -4,22 +4,21 @@
       СУММА: <span style="color: #186a3b">{{ amount }}</span>
     </div>
     <v-list>
-      <v-list-item 
-      v-for="person in personsStore.persons" 
-      :key="person.id">
-        <v-list-item 
-        v-for="creditor in person.creditors" 
-        :key="creditor.id">
+      <v-list-item v-for="person in personsStore.persons" :key="person.id">
+        <v-list-item v-for="creditor in person.creditors" :key="creditor.id">
           <div class="persons">
             {{ person.name }} должен {{ creditor.nameCred }} {{ creditor.credit }}
           </div>
         </v-list-item>
       </v-list-item>
     </v-list>
-    <v-btn @click="this.personsStore.removeRepetitions()" class="btn">Убрать повторения</v-btn>
+    <v-btn 
+    text="Убрать повторения"
+    @click="personsStore.removeRepetitions()"
+    class="btn"/>
   </div>
 </template>
-  
+
 <script>
 import { usePersonsStore } from "@/stores/personsStore";
 export default {
@@ -31,17 +30,12 @@ export default {
   },
   computed: {
     amount() {
-      var sum = 0;
-      for (var person of this.personsStore.persons) {
-        var wastes = +person.wastes;
-        sum = sum + wastes;
-      }
-      return sum;
+      return this.personsStore.persons.reduce((sum, person) => sum + person.wastes, 0);
     },
   },
 };
 </script>
-  
+
 <style scoped lang="scss">
 .total-amount {
   margin: 10px;
@@ -71,4 +65,3 @@ export default {
   background: #eafaf1;
 }
 </style>
-  

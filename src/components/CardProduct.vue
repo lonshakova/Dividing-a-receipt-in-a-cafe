@@ -1,29 +1,27 @@
 <template>
-  <div>
-    <div class="card-product">
-      <div class="product">{{ product.name }}</div>
-      <div class="cost-payer">
-        <div class="cost">{{ product.cost }}</div>
-        <div class="payer">
-          <div class="name_person">
-            {{ product.payer.name }}
-          </div>
+  <div class="card-product">
+    <div class="product">{{ product.name }}</div>
+    <div class="cost-payer">
+      <div class="cost">{{ product.cost }}</div>
+      <div class="payer">
+        <div class="name_person">
+          {{ product.payer.name }}
         </div>
       </div>
-      <div class="eaters">
-        <div 
-        class="name_person" 
-        v-for="eater in product.eaters" 
-        :key="eater.id">
-          {{ eater.name }}&nbsp
-        </div>
+    </div>
+    <div class="eaters">
+      <div 
+      class="name_person" 
+      v-for="eater in product.eaters" 
+      :key="eater.id">
+        {{ eater.name }}&nbsp
       </div>
-      <div class="btns">
-        <v-btn 
-        class="btn" 
-        @click="productStore.removeCard(product)"
-        >Удалить</v-btn>
-      </div>
+    </div>
+    <div class="btns">
+      <v-btn 
+      text="Удалить"
+      class="btn" 
+      @click="productStore.removeCard(product)"/>
     </div>
   </div>
 </template>

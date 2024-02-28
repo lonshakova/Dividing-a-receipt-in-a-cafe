@@ -1,28 +1,28 @@
 <template>
-  <v-card class="new-person" @submit.prevent>
+  <v-card class="new-person">
     <v-form class="input-person">
       <v-text-field 
       v-model="person.name" 
       placeholder="Введите имя" 
       class="name" />
       <v-btn 
+      text="Добавить"
       class="btn" 
-      @click="addPerson"
-      > Добавить </v-btn>
+      @click="addPerson"/> 
     </v-form>
     <div 
     lines 
-    class="name-list"
+    class="name-list" 
     v-for="person in personsStore.persons" 
     :key="person.id">
       <v-list-item class="names">{{ person.name }}</v-list-item>
       <div>
         <v-btn 
         block 
+        text="Удалить"
         rounded="lg" 
         class="btn" 
-        @click="this.personsStore.deletePerson(person)"
-        >Удалить</v-btn>
+        @click="personsStore.deletePerson(person)"/>
       </div>
     </div>
   </v-card>
@@ -101,4 +101,3 @@ export default {
   font-family: Arial;
 }
 </style>
-  

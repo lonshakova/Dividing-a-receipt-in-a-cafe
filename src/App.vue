@@ -4,9 +4,6 @@
   </v-app>
 </template>
 
-<script>
-
-</script>
 <style lang=scss>
 * {
   margin: 0;

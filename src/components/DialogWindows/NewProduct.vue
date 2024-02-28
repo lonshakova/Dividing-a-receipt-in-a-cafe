@@ -1,5 +1,5 @@
 <template>
-  <div class="new-product" @submit.prevent>
+  <div class="new-product">
     <v-form class="input-product">
       <v-text-field 
       v-model="product.name" 
@@ -49,14 +49,14 @@
     </div>
     <div style="display: flex; justify-content: flex-end">
       <v-btn 
+      text="Добавить"
       class="btn" 
       @click="createCard" 
-      :disabled="formIsEmpty"
-      >Добавить</v-btn>
+      :disabled="formIsEmpty"/>
     </div>
   </div>
 </template>
-  
+
 <script>
 import { usePersonsStore } from "@/stores/personsStore";
 import { useProductsStore } from "@/stores/productStore";
@@ -93,12 +93,12 @@ export default {
   },
   computed: {
     formIsEmpty() {
-      return (this.product.name == '' || this.product.cost == '' || this.product.payer == '' || this.product.eaters.length == 0)
+      return (this.product.name === '' || this.product.cost === '' || this.product.payer === '' || this.product.eaters.length === 0)
     }
   }
 };
 </script>
-  
+
 <style scoped lang="scss">
 .new-product {
   width: 785px;
@@ -156,4 +156,3 @@ export default {
   color: black;
 }
 </style>
-  

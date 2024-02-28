@@ -41,17 +41,7 @@ import CardList from "@/components/CardList.vue";
 import NewPerson from "@/components/DialogWindows/NewPerson.vue";
 import NewProduct from "@/components/DialogWindows/NewProduct.vue";
 import TotalAmount from "@/components/DialogWindows/TotalAmount.vue";
-import { usePersonsStore } from "@/stores/personsStore";
-import { useProductsStore } from "@/stores/productStore";
 export default {
-    setup() {
-        const personsStore = usePersonsStore();
-        const productStore = useProductsStore();
-        return {
-            personsStore,
-            productStore
-        }
-    },
     components: {
         NewPerson,
         NewProduct,

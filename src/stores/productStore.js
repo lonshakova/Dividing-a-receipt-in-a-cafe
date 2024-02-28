@@ -8,47 +8,37 @@ export const useProductsStore = defineStore({
     createCard(product) {
       const personsStore = usePersonsStore();
       this.products.push(product);
-      this.NewProductVisible = false;
-      const productCost = +product.cost;
-      const totalPrice = productCost / (product.eaters.length);
+      product.cost = +product.cost;
+      const totalPrice = product.cost / (product.eaters.length);
       for (const person of personsStore.persons) {
-        if (person.id == product.payer.id) {
-          person.wastes = person.wastes + productCost;
+        if (person.id === product.payer.id) {
+          person.wastes += product.cost;
         }
         else {
-          for (const eater of product.eaters) {
-            if (person.id == eater.id) {
-              for (const creditor of person.creditors) {
-                if (creditor.id == product.payer.id) {
-                  creditor.credit = creditor.credit + totalPrice;
-                  break;
-                }
-                else if (creditor.id != product.payer.id) {
-                  eater.creditors.push({ id: product.payer.id, nameCred: product.payer.name, credit: totalPrice });
-                  break;
-                }
-              }
-              if (person.creditors.length == 0) {
+            const eater = product.eaters.find(eater => eater.id === person.id);
+            if (eater) {
+              const creditor = person.creditors.find(creditor => creditor.id === product.payer.id);
+              if (creditor) {
+                creditor.credit += totalPrice;
+              } else {
                 eater.creditors.push({ id: product.payer.id, nameCred: product.payer.name, credit: totalPrice });
               }
             }
-          }
         }
       }
     },
     removeCard(product) {
       const personsStore = usePersonsStore();
-      const productCost = +product.cost;
-      const totalPrice = productCost / (product.eaters.length);
+      const totalPrice = product.cost / (product.eaters.length);
       for (const person of personsStore.persons) {
-        if (person.id == product.payer.id) {
-          person.wastes = person.wastes - productCost;
+        if (person.id === product.payer.id) {
+          person.wastes -= product.cost;
         }
         else {
           for (const creditor of person.creditors) {
-            if (creditor.id == product.payer.id) {
-              creditor.credit = creditor.credit - totalPrice;
-              if (creditor.credit == 0) {
+            if (creditor.id === product.payer.id) {
+              creditor.credit -= totalPrice;
+              if (creditor.credit === 0) {
                 person.creditors = person.creditors.filter((p) => p.id !== creditor.id);
               }
               break;

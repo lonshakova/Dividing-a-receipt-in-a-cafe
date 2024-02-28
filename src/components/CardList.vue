@@ -5,14 +5,12 @@
             name="card-list" 
             v-for="product in productStore.products" 
             :key="product.id">
-                <card-product 
-                :product="product" 
-                :key="product.id" />
+                <card-product :product="product" :key="product.id" />
             </transition-group>
         </div>
     </div>
 </template>
-  
+
 <script>
 import CardProduct from "./CardProduct.vue";
 import { useProductsStore } from "@/stores/productStore";
@@ -28,7 +26,7 @@ export default {
     },
 };
 </script>
-  
+
 <style scoped>
 .card-list {
     min-width: 1020px;
@@ -64,4 +62,3 @@ export default {
     color: #148f77;
 }
 </style>
-  

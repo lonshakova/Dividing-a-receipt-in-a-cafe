@@ -13,13 +13,13 @@ export const usePersonsStore = defineStore({
     removeRepetitions() {
       for (const person1 of this.persons) {
         for (const person2 of this.persons) {
-          if (person1.id == person2.id) {
+          if (person1.id === person2.id) {
             continue;
           }
           for (const cred1 of person1.creditors) {
-            if (cred1.id == person2.id) {
+            if (cred1.id === person2.id) {
               for (const cred2 of person2.creditors) {
-                if (cred2.id == person1.id) {
+                if (cred2.id === person1.id) {
                   if (cred1.credit > cred2.credit) {
                     cred1.credit = cred1.credit - cred2.credit;
                     person2.creditors = person2.creditors.filter((p) => p.id !== cred2.id);
