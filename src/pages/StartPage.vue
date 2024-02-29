@@ -1,24 +1,20 @@
 <template>
-    <div class="start-page" justify-center>
-        <v-btn 
-        class="btn" 
-        size="x-large"
-        @click="$router.push('/main')"
-        >Начнём</v-btn>
-    </div>
+  <div class="start-page" justify-center>
+    <v-btn class="btn" size="x-large" @click="$router.push('/main')">Начнём</v-btn>
+  </div>
 </template>
 
 
 <style scoped lang="scss">
 .start-page {
-    width: 100%;
-    height: 100%;
-    margin: 50px;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
 }
 
 .btn:hover {
-    background: #eafaf1;
+  background: #eafaf1;
 }
 </style>

@@ -3,14 +3,14 @@ import StartPage from "@/pages/StartPage.vue";
 import MainPage from "@/pages/MainPage.vue";
 
 const routes = [
-    {
-        path: '/',
-        component: StartPage
-    },
-    {
-        path: '/main',
-        component: MainPage
-    }, 
+  {
+    path: '/',
+    component: StartPage
+  },
+  {
+    path: '/main',
+    component: MainPage
+  }, 
 ];
 const router = createRouter({
   history: createWebHistory(),

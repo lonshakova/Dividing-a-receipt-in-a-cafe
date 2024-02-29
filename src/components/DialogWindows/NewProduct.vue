@@ -10,6 +10,7 @@
       v-model="product.cost" 
       class="input" 
       placeholder="Введите цену" />
+      
     </v-form>
     <div class="users">
       <div>
@@ -73,7 +74,7 @@ export default {
     return {
       product: {
         name: "",
-        cost: 0,
+        cost: "",
         payer: "",
         eaters: [],
       },
@@ -85,7 +86,7 @@ export default {
       this.productStore.createCard(this.product);
       this.product = {
         name: "",
-        cost: 0,
+        cost: "",
         payer: "",
         eaters: [],
       };
