@@ -1,4 +1,4 @@
-# dividing
+# dividing a receipt in a cafe
 
 ## Project setup
 ```
